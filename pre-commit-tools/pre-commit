@@ -3,7 +3,7 @@
 
 from pre_commit_run_hooks import run_hooks
 from pre_commit_sync_config import sync
-from pre_commit_config import (
+from config import (
     pre_commit_config_name,
     global_pre_commit_config_location,
 )
