@@ -1,0 +1,13 @@
+#!/usr/bin/env python3.9
+# -*- coding: utf-8 -*-
+
+from pre_commit_run_hooks import run_hooks
+from pre_commit_sync_config import sync
+from pre_commit_config import (
+    pre_commit_config_name,
+    global_pre_commit_config_location,
+)
+
+sync(pre_commit_config_name, global_pre_commit_config_location)
+
+run_hooks()
