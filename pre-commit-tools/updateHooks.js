@@ -16,14 +16,20 @@ const reRev = /(?<base>rev: )(?<version>[^\n]+)/;
 const reExtractDependency = /\s+- (?<dependencyName>@?[\w-]+)@(?<currentVersion>[\d.^~<=>]+)/;
 const reReplaceVersion = /(?<base>\s+- .*@)(?:[\d.^~<=>]+)/;
 
+const get = async (url)=>
+  fetch(url, 'GITHUB_TOKEN' in process.env ? {
+    headers: {
+      Authorization: `token ${process.env.GITHUB_TOKEN}`,
+    },
+  } : {})
+    .then(response=>response.json();
+
 const getLatestGitHubTag = async (gitHubRepo) =>
-  fetch(`https://api.github.com/repos/${gitHubRepo}/tags`)
-    .then(response=>response.json())
+  get(`https://api.github.com/repos/${gitHubRepo}/tags`)
     .then(response=>response[0].name);
 
 const getLatestNpmVersion = async (dependencyName)=>
-  fetch(`https://registry.npmjs.org/${dependencyName}/`)
-    .then(response=>response.json())
+  get(`https://registry.npmjs.org/${dependencyName}/`)
     .then(response=>response['dist-tags'].latest);
 
 let currentRepo = undefined;
@@ -50,7 +56,6 @@ Promise.all(
     if(typeof dependency !== 'undefined'){
       const {dependencyName, currentVersion} = dependency;
       const latestVersion = await getLatestNpmVersion(dependencyName);
-      console.log(dependency, latestVersion);
       if(`${latestVersion}` === currentVersion);
         return line;
       console.log(
