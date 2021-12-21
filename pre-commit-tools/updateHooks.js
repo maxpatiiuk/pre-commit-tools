@@ -9,7 +9,8 @@ import {
   reRev,
   reExtractDependency,
   getLatestGitHubTag,
-  getLatestNpmVersion
+  getLatestNpmVersion,
+  stopKeyword
 } from './common.js';
 
 const configFileLocation = process.argv[2];
@@ -17,10 +18,20 @@ const config = fs.readFileSync(configFileLocation).toString();
 
 console.log(`Updating hooks and NPM \`additional_dependencies\` in ${configFileLocation}`);
 
+// Don't update global part of local pre-commit config files
+const isGlobalFile = !config.includes(stopKeyword);
+
+const updatablePart = isGlobalFile
+  ? config
+  : config.slice(0, config.indexOf(stopKeyword));
+const nonUpdatablePart = isGlobalFile
+  ? ''
+  : config.slice(Math.max(0,config.indexOf(stopKeyword)));
+
 let currentRepo = undefined;
 
 Promise.all(
-  config.split('\n').map(async (line)=>{
+  updatablePart.split('\n').map(async (line)=>{
     currentRepo = line.match(reExtractRepo)?.groups.gitHubRepo ?? currentRepo;
     let localCurrentRepo = currentRepo;
 
@@ -52,5 +63,7 @@ Promise.all(
     return line;
   })
 ).then((results)=>
-  fs.promises.writeFile(configFileLocation,results.join('\n'))
+  fs.promises.writeFile(
+    configFileLocation,results.join('\n') + nonUpdatablePart
+  )
 );

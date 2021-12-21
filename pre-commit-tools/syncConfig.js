@@ -8,6 +8,7 @@ import fs from 'fs';
 
 import {
   get,
+  repoKeyword,
   reposKeyword,
   stopKeyword,
   localRepo,
