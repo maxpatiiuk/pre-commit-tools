@@ -22,7 +22,18 @@ const get = async (url)=>
       Authorization: `token ${process.env.GITHUB_TOKEN}`,
     },
   } : {})
-    .then(response=>response.json();
+    .then(response=>new Promise((resolve, reject)=>
+      response.json().then(data=>resolve([response,data]))
+    ))
+    .then(([{status}, data])=>{
+      if(status !== 200)
+        throw new Error(JSON.stringify(data,null,4));
+      return data;
+    })
+    .catch(error=>{
+      console.error(`Request Failed: ${url}`);
+      throw error;
+    });
 
 const getLatestGitHubTag = async (gitHubRepo) =>
   get(`https://api.github.com/repos/${gitHubRepo}/tags`)
@@ -56,13 +67,13 @@ Promise.all(
     if(typeof dependency !== 'undefined'){
       const {dependencyName, currentVersion} = dependency;
       const latestVersion = await getLatestNpmVersion(dependencyName);
-      if(`${latestVersion}` === currentVersion);
+      if(currentVersion === `${latestVersion}`)
         return line;
       console.log(
         `Updating ${dependencyName}' from ${currentVersion} `
         + `to ${latestVersion}`
       );
-      return line.replace(reReplaceVersion, `$<base>${latestVersion}`);
+      return line.replace(reReplaceVersion, `$<base>^${latestVersion}`);
     }
     return line;
   })
