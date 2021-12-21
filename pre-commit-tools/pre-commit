@@ -1,13 +1,16 @@
-#!/usr/bin/env python3.9
-# -*- coding: utf-8 -*-
+# start templated
+INSTALL_PYTHON=/usr/local/opt/pre-commit/libexec/bin/python3
+ARGS=(hook-impl --config=.pre-commit-config.yaml --hook-type=pre-commit)
+# end templated
 
-from pre_commit_run_hooks import run_hooks
-from pre_commit_sync_config import sync
-from config import (
-    pre_commit_config_name,
-    global_pre_commit_config_location,
-)
+HERE="$(cd "$(dirname "$0")" && pwd)"
+ARGS+=(--hook-dir "$HERE" -- "$@")
 
-sync(pre_commit_config_name, global_pre_commit_config_location)
-
-run_hooks()
+if [ -x "$INSTALL_PYTHON" ]; then
+    exec "$INSTALL_PYTHON" -mpre_commit "${ARGS[@]}"
+elif command -v pre-commit > /dev/null; then
+    exec pre-commit "${ARGS[@]}"
+else
+    echo '`pre-commit` not found.  Did you forget to activate your virtualenv?' 1>&2
+    exit 1
+fi
