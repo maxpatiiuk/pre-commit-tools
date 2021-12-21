@@ -1,26 +1,27 @@
+/**
+  * Sync local and global pre-commit config files
+  *
+  * @module
+  */
+
 import fs from 'fs';
 
-import {get} from './common.js';
+import {
+  get,
+  reposKeyword,
+  stopKeyword,
+  localRepo,
+  getUrlFromRepoLine
+} from './common.js';
 
 
-const reposKeyword = "repos:"
-const repoKeyword = "repo: "
-const stopKeyword = "  # global hooks:"
-const localRepo = "local"
-
-const globalHookLocation = process.argv[2];
 const localHookLocation = '.pre-commit-config.yaml';
+const globalHookLocation = process.argv[2];
 
 if(typeof globalHookLocation === 'undefined')
   throw new Error('Pass the location of a global hook config as an argument');
 
 
-// Extract repository URL from a `- repo: ...` line
-const getUrlFromRepoLine = (repoLine) =>
-  repoLine.slice(repoLine.indexOf(repoKeyword) + repoKeyword.length);
-
-
-// Sync the local and global pre-commit config files
 async function sync(){
 
     const globalConfig = await get(globalHookLocation);

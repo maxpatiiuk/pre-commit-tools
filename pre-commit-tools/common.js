@@ -35,3 +35,13 @@ export const getLatestGitHubTag = async (gitHubRepo) =>
 export const getLatestNpmVersion = async (dependencyName)=>
   get(`https://registry.npmjs.org/${dependencyName}/`)
     .then(response=>response['dist-tags'].latest);
+
+export const reposKeyword = "repos:"
+export const repoKeyword = "repo: "
+export const stopKeyword = "  # global hooks:"
+export const localRepo = "local"
+
+// Extract repository URL from a `- repo: ...` line
+export const getUrlFromRepoLine = (repoLine) =>
+  repoLine.slice(repoLine.indexOf(repoKeyword) + repoKeyword.length);
+
