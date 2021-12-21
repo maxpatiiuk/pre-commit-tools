@@ -1,0 +1,26 @@
+{
+  "name": "pre-commit-tools",
+  "version": "1.0.0",
+  "private": false,
+  "description": "A collection of scripts for working with pre-commit.com hooks and their config files.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maxxxxdlp/spre-commit-tools.git"
+  },
+  "author": "Max Patiiuk",
+  "homepage": "https://github.com/maxxxxdlp/spre-commit-tools/#README.md",
+  "dependencies": {
+    "node-fetch": "3.1.0"
+  },
+  "devDependencies": {
+    "@maxxxxxdlp/eslint-config": "^1.0.9",
+    "@maxxxxxdlp/prettier-config": "^1.0.3",
+    "@rushstack/eslint-patch": "^1.1.0",
+    "eslint": "^7.32.0",
+    "prettier": "^2.3.1"
+  },
+  "prettier": "@maxxxxxdlp/prettier-config",
+  "type": "module"
+}
+
