@@ -11,7 +11,7 @@
   "author": "Max Patiiuk",
   "homepage": "https://github.com/maxxxxdlp/spre-commit-tools/#README.md",
   "dependencies": {
-    "node-fetch": "3.1.0"
+    "node-fetch": "3.1.1"
   },
   "devDependencies": {
     "@maxxxxxdlp/eslint-config": "^1.0.9",
