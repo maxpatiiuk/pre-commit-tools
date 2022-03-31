@@ -52,7 +52,7 @@ async function sync(){
         + `pre-commit hooks config file.\n`
         + `Please make sure the config file is valid.\n`
         + `Refer to the documentation at `
-        + `https://github.com/maxxxxxdlp/pre-commit-tools/#readme`
+        + `https://github.com/maxpatiiuk/pre-commit-tools/#readme`
         + ` for more information.`
       )
     else {

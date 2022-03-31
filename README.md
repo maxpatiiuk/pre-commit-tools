@@ -19,7 +19,7 @@ pip install pre-commit
 Clone this repository
 
 ```bash
-git clone https://github.com/maxxxxxdlp/pre-commit-tools/
+git clone https://github.com/maxpatiiuk/pre-commit-tools/
 ```
 
 Open it
@@ -93,12 +93,12 @@ Additionally, you can put the commented out repo lines above the global hooks
 part to disable them completely.
 
 For example,
-[here is my global hooks config file](https://github.com/maxxxxxdlp/dotfiles/blob/main/git/.pre-commit-config.yaml)
+[here is my global hooks config file](https://github.com/maxpatiiuk/dotfiles/blob/main/git/.pre-commit-config.yaml)
 
 And here are some local version of it with a few overwrites and some hooks being
 disabled:
 
-[Disabling global stylelint and eslint](https://github.com/maxxxxxdlp/dotfiles/blob/main/.pre-commit-config.yaml)
+[Disabling global stylelint and eslint](https://github.com/maxpatiiuk/dotfiles/blob/main/.pre-commit-config.yaml)
 
 [Adding new hooks in addition to global hooks](https://github.com/specify/specify7/blob/79b4ce7fc993953074eb88dcb97202830d09a8f4/.pre-commit-config.yaml)
 
@@ -155,13 +155,13 @@ You can run the update script manually using the venv we configured earlier:
 Though, it would be an even better idea to run that script on a fixed schedule.
 On Linux, you can use cron files for that where as on macOS there is launchctl.
 
-[My launchctl config file](https://github.com/maxxxxxdlp/dotfiles/blob/main/scripts/ua.in.mambo.task.plist)
+[My launchctl config file](https://github.com/maxpatiiuk/dotfiles/blob/main/scripts/uk.patii.max.task.plist)
 
 ## My pre-commit hooks
 
 You are encouraged to create your own pre-commit hooks if there isn't an
 existing one that suits your needs.
 
-[A repository with a few hooks I wrote](https://github.com/maxxxxxdlp/pre-commit/)
+[A repository with a few hooks I wrote](https://github.com/maxpatiiuk/pre-commit/)
 
 [Documentation on writing hooks](https://pre-commit.com/)

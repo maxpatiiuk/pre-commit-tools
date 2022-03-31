@@ -6,10 +6,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/maxxxxdlp/spre-commit-tools.git"
+    "url": "https://github.com/maxpatiiuk/pre-commit-tools.git"
   },
   "author": "Max Patiiuk",
-  "homepage": "https://github.com/maxxxxdlp/spre-commit-tools/#README.md",
+  "homepage": "https://github.com/maxpatiiuk/pre-commit-tools/#README.md",
   "dependencies": {
     "node-fetch": "3.1.1"
   },
